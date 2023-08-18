@@ -26,7 +26,7 @@ Followings are the application steps:
 
 2. Blog Detail: For both guest and logged in users. Click on << Back button to go back on previous page
 
-3. Login screen to login in the system
+3. Login screen to login in the system. Username=admin, Password=admin
 
 4. Once a user logged in successfully, user will be redirected to My Blogs page. Where logged in user can see the list of blogs created by him/her. Click on Edit button to edit the blog. And click on Delete button to delete the selected blog.
 
