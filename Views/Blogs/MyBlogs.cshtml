@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Blogs: My Blogs";
+}
+
+<script lang="ja" type="text/javascript" src="~/Scripts/MyBlogs.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6col-md-offset-3">
+            <h2>My Blogs</h2> @Html.Hidden("AuthorId", (object)ViewBag.LoginId)
+            <button type="button" class="btn btn-info col-md-offset-10 col-md-2" id="btnCreateBlog">Create Blog</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-sm" id="tblBlogs">
+                            <tr>
+                                <th>Blog Title</th>
+                                <th>Published Date</th>
+                                <th>Creation Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

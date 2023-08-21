@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    //Layout = "~/Views/_ViewStart.cshtml";
+}
+<script lang="ja" type="text/javascript" src="~/Scripts/Login.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6col-md-offset-3">
+            <h2>Login</h2>
+            <div class="row col-md-4" id="dvMsg">
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphiconglyphicon-user"></i></span>
+                            <input type="text" id="txtUsername" class="form-control" placeholder="Username">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphiconglyphicon-lock"></i></span>
+                            <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group col-md-10">
+                        <button class="btn btn-warning form-control" type="submit" id="AppLogin">&nbsp;Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

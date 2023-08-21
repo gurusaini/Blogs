@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Blogs: Update Blog";
+}
+<script type="text/javascript" src="~/Scripts/UpdateBlog.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6col-md-offset-3">
+            <h2>Update Blog</h2>
+            <div class="row" id="dvMsg">
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="form-check-label" for="txtTitle">
+                                Blog Title
+                            </label>
+                            <span class="field-validation-error text-danger" data-valmsg-for="txtTitle" id="spnTitle"
+                                  data-valmsg-replace="true">&nbsp;Required</span>
+                            <input type="text" id="txtTitle" class="form-control" placeholder="Blog Title">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            @Html.Hidden("BlogId", (object)ViewBag.BlogId)
+                            @Html.Hidden("AuthorId", (object)ViewBag.LoginId)
+                            <label class="form-check-label" for="txtContent">
+                                Blog Content
+                            </label><span class="field-validation-error text-danger" data-valmsg-for="txtContent" id="spnContent"
+      data-valmsg-replace="true">&nbsp;Required</span><br />
+                            <textarea class="form-control" id="txtContent" cols="35" rows="5"></textarea>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="fuBlogImage" class="form-label">Blog Image</label><br />
+                            <input class="form-control form-control-sm" id="fuBlogImage" type="file" />
+                            <div class="text-info" id="dvImage"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="form-check-label" for="fuBlogVideo">
+                                Blog Video
+                            </label><br />
+                            <input class="form-control form-control-sm" id="fuBlogVideo" type="file" />
+                            <div id="dvVideo"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="checkbox" class="form-check-input" id="chkStatus" placeholder="Status">
+                            <label class="form-check-label" for="chkStatus">
+                                &nbsp;&nbsp;
+                                Publish
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group col-md-5">
+                        <button class="btn btn-warning form-control" type="submit" id="btnUpdateBlog"><i class="glyphiconglyphicon-log-in"></i>Submit</button>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button class="btn btn-danger form-control" type="button" id="btnBack"><< Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
