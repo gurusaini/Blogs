@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BlogsModelStoreContainer" CdmEntityContainer="BlogsEntities">
+    <EntitySetMapping Name="tblAuthors">
+      <EntityTypeMapping TypeName="BlogsModel.tblAuthor">
+        <MappingFragment StoreEntitySet="tblAuthor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBlogs">
+      <EntityTypeMapping TypeName="BlogsModel.tblBlog">
+        <MappingFragment StoreEntitySet="tblBlogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogVideo" ColumnName="BlogVideo" />
+          <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+          <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Blogs_CreateUpdate" FunctionName="BlogsModel.Store.Blogs_CreateUpdate" />
+    <FunctionImportMapping FunctionImportName="LoginUser" FunctionName="BlogsModel.Store.LoginUser" />
+    <FunctionImportMapping FunctionImportName="ViewBlogs" FunctionName="BlogsModel.Store.ViewBlogs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BlogsModel.ViewBlogs_Result">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogVideo" ColumnName="BlogVideo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

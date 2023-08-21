@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlogsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblAuthor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBlogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Author" Type="int" Nullable="false" />
+    <Property Name="BlogContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="BlogImage" Type="varchar" MaxLength="50" />
+    <Property Name="BlogVideo" Type="varchar" MaxLength="50" />
+    <Property Name="Published_Date" Type="date" />
+    <Property Name="Creation_Date" Type="date" Nullable="false" />
+  </EntityType>
+  <Function Name="Blogs_CreateUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="Author" Type="int" Mode="In" />
+    <Parameter Name="BlogContent" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Status" Type="bit" Mode="In" />
+    <Parameter Name="BlogImage" Type="varchar" Mode="In" />
+    <Parameter Name="BlogVideo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ViewBlogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BlogId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="BlogsModelStoreContainer">
+    <EntitySet Name="tblAuthor" EntityType="Self.tblAuthor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBlogs" EntityType="Self.tblBlogs" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
