@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BlogsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAuthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBlogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Author" Type="int" Nullable="false" />
+          <Property Name="BlogContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="BlogImage" Type="varchar" MaxLength="50" />
+          <Property Name="BlogVideo" Type="varchar" MaxLength="50" />
+          <Property Name="Published_Date" Type="date" />
+          <Property Name="Creation_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <Function Name="Blogs_CreateUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Author" Type="int" Mode="In" />
+          <Parameter Name="BlogContent" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="BlogImage" Type="varchar" Mode="In" />
+          <Parameter Name="BlogVideo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteBlog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BlogId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="MyBlogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Author" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ViewBlogDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BlogId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ViewBlogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="BlogsModelStoreContainer">
+          <EntitySet Name="tblAuthor" EntityType="Self.tblAuthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBlogs" EntityType="Self.tblBlogs" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BlogsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAuthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBlog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Author" Type="Int32" Nullable="false" />
+          <Property Name="BlogContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="BlogImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BlogVideo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Published_Date" Type="DateTime" Precision="0" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="BlogsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAuthors" EntityType="Self.tblAuthor" />
+          <EntitySet Name="tblBlogs" EntityType="Self.tblBlog" />
+          <FunctionImport Name="Blogs_CreateUpdate">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Author" Mode="In" Type="Int32" />
+            <Parameter Name="BlogContent" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="BlogImage" Mode="In" Type="String" />
+            <Parameter Name="BlogVideo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LoginUser" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ViewBlogs" ReturnType="Collection(BlogsModel.ViewBlogs_Result)">
+          </FunctionImport>
+          <FunctionImport Name="ViewBlogDetail" ReturnType="Collection(BlogsModel.ViewBlogDetail_Result)">
+          <Parameter Name="BlogId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MyBlogs" ReturnType="Collection(BlogsModel.MyBlogs_Result)">
+          <Parameter Name="Author" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteBlog">
+            <Parameter Name="BlogId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ViewBlogs_Result">
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="BlogContent" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="Published_Date" Nullable="true" />
+          <Property Type="DateTime" Name="Creation_Date" Nullable="false" />
+          </ComplexType>
+        <ComplexType Name="ViewBlogDetail_Result">
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="BlogContent" Nullable="false" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="BlogImage" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BlogVideo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="DateTime" Name="Published_Date" Nullable="true" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="Creation_Date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="MyBlogs_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="Author" Nullable="false" />
+          <Property Type="String" Name="BlogContent" Nullable="false" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="BlogImage" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BlogVideo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Published_Date" Nullable="true" />
+          <Property Type="DateTime" Name="Creation_Date" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BlogsModelStoreContainer" CdmEntityContainer="BlogsEntities1">
+          <EntitySetMapping Name="tblAuthors">
+            <EntityTypeMapping TypeName="BlogsModel.tblAuthor">
+              <MappingFragment StoreEntitySet="tblAuthor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBlogs">
+            <EntityTypeMapping TypeName="BlogsModel.tblBlog">
+              <MappingFragment StoreEntitySet="tblBlogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogVideo" ColumnName="BlogVideo" />
+                <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Blogs_CreateUpdate" FunctionName="BlogsModel.Store.Blogs_CreateUpdate" />
+          <FunctionImportMapping FunctionImportName="LoginUser" FunctionName="BlogsModel.Store.LoginUser" />
+          <FunctionImportMapping FunctionImportName="ViewBlogs" FunctionName="BlogsModel.Store.ViewBlogs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BlogsModel.ViewBlogs_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ViewBlogDetail" FunctionName="BlogsModel.Store.ViewBlogDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BlogsModel.ViewBlogDetail_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogVideo" ColumnName="BlogVideo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MyBlogs" FunctionName="BlogsModel.Store.MyBlogs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BlogsModel.MyBlogs_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogVideo" ColumnName="BlogVideo" />
+                <ScalarProperty Name="Published_Date" ColumnName="Published_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DeleteBlog" FunctionName="BlogsModel.Store.DeleteBlog" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
